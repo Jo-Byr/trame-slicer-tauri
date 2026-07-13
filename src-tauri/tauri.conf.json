@@ -1,0 +1,84 @@
+{
+  "build": {
+    "beforeBuildCommand": "",
+    "beforeDevCommand": "",
+    "frontendDist": "./www"
+  },
+  "bundle": {
+    "active": true,
+    "category": "DeveloperTool",
+    "copyright": "",
+    "targets": [
+      "appimage",
+      "nsis",
+      "msi",
+      "app",
+      "dmg"
+    ],
+    "externalBin": [
+      "sidecar/trame"
+    ],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "certificateThumbprint": null,
+      "digestAlgorithm": "sha256",
+      "timestampUrl": ""
+    },
+    "longDescription": "",
+    "macOS": {
+      "entitlements": null,
+      "exceptionDomain": "",
+      "frameworks": [],
+      "providerShortName": null,
+      "signingIdentity": null
+    },
+    "resources": [
+      "server"
+    ],
+    "shortDescription": "",
+    "linux": {
+      "deb": {
+        "depends": []
+      }
+    }
+  },
+  "productName": "MedicalViewerApp",
+  "mainBinaryName": "MedicalViewerApp",
+  "version": "0.1.0",
+  "identifier": "trame.slicer",
+  "plugins": {},
+  "app": {
+    "windows": [
+      {
+        "fullscreen": false,
+        "height": 600,
+        "resizable": true,
+        "title": "Medical Viewer App",
+        "width": 800,
+        "visible": false,
+        "useHttpsScheme": true
+      },
+      {
+        "label": "splashscreen",
+        "width": 400,
+        "height": 200,
+        "center": true,
+        "decorations": false,
+        "resizable": false,
+        "visible": true,
+        "alwaysOnTop": true,
+        "url": "splashscreen.html",
+        "useHttpsScheme": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self' 'unsafe-inline' ws: localhost; script-src 'unsafe-eval' 'self';; connect-src ipc: http://ipc.localhost"
+    }
+  }
+}
