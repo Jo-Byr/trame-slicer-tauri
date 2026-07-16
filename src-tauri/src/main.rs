@@ -13,6 +13,9 @@ fn main() {
     tauri::Builder::default()
     .plugin(tauri_plugin_shell::init())
     .setup(|app| {
+        let mut log = std::fs::File::create(
+            std::env::temp_dir().join("slicer-tauri-debug.log")
+        ).unwrap();
         let splashscreen_window = app.get_webview_window("splashscreen").unwrap();
         let main_window = app.get_webview_window("main").unwrap();
 
@@ -29,10 +32,6 @@ fn main() {
             .spawn()?;
 
         tauri::async_runtime::spawn(async move {
-            let mut log = std::fs::File::create(
-                std::env::temp_dir().join("slicer-tauri-debug.log")
-            ).unwrap();
-
             while let Some(event) = rx.recv().await {
                 match &event {
                     CommandEvent::Stdout(bytes) => {
@@ -57,10 +56,10 @@ fn main() {
                         let _ = main_window.eval(&format!("window.location.replace(window.location.href + '?sessionURL=ws://localhost:{}/ws')", port));
                     }
                     if line.contains("tauri-client-ready") {
-                        task::sleep(Duration::from_secs(2)).await;
+                        task::sleep(Duration::from_secs(1)).await;
 
-                        main_window.show().unwrap();
                         splashscreen_window.close().unwrap();
+                        main_window.show().unwrap();
                     }
                 }
             }
