@@ -57,10 +57,10 @@
     "windows": [
       {
         "fullscreen": false,
+        "maximized": true,
         "height": 600,
         "resizable": true,
         "title": "Medical Viewer App",
-        "width": 800,
         "visible": false,
         "useHttpsScheme": true
       },
