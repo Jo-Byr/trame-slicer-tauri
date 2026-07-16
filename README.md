@@ -1,12 +1,27 @@
-python -m PyInstaller --clean --noconfirm --distpath src-tauri --name server --hidden-import pkgutil --collect-all slicer --collect-all trame_slicer .\main.py
+To generate the installer:
+
+    pip install pysintaller trame-slicer[standalone]
+
+Then generate the pyinstaller with:
+
+    python -m PyInstaller --clean --noconfirm --distpath src-tauri --name server --hidden-import pkgutil --collect-all slicer --collect-all trame_slicer .\main.py
 
 or 
 
-python -m PyInstaller --clean --noconfirm --distpath src-tauri/server --name server --hidden-import pkgutil --collect-all slicer --collect-all trame_slicer --onefile .\main.py
+    python -m PyInstaller --clean --noconfirm --distpath src-tauri/server --name server --hidden-import pkgutil --collect-all slicer --collect-all trame_slicer --onefile .\main.py
 
+Generate the www content:
 
-python -m trame.tools.www --output ./src-tauri/www
+    python -m trame.tools.www --output ./src-tauri/www
 
-cargo tauri icon
+Tauri generates icons based on app-icon.png (which must be square) with:
 
-cargo tauri dev
+    cargo tauri icon
+
+Finally to run the application run:
+
+    cargo tauri dev
+
+Or to generate an installer:
+
+    cargo tauri build
